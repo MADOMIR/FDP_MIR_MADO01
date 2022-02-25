@@ -25,3 +25,12 @@ for i in range(1,Num1+1):
     for y in range(1,i+1):
         print(y, end=" ")
     print("")
+#suma de numeros recurividad
+Num1=int(input("Escriba un numero:"))
+def SumatoriaRecursiva(Num1):
+    if(Num1==1):
+        return 1
+    else:
+        return Num1 + SumatoriaRecursiva(Num1-1)
+
+print("La suma de los numeros de 1 hasta ", Num1, "es de ", SumatoriaRecursiva(Num1))    
