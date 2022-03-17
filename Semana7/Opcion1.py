@@ -18,7 +18,10 @@ def BusquedaDeVideo(TextoParaBusqueda,CantidadDeResultados):
             webbrowser.open(ListaDeEnlaces[i], new=1)
         ListaDeEnlacesGenerada=True
     except:
-        print("!!!!Error al realizar la búsqueda por favor corrobore su conexión a internet")
+        print("\n!!!!Error al realizar la búsqueda por favor corrobore su conexión a internet\n")
+        ListaDeEnlaces=[]
+        ListaDeEnlacesGenerada=False 
+       
     return ListaDeEnlaces,ListaDeEnlacesGenerada
 
 # Funcion busqueda, despliegue y almacenamiento de enlaces de videos
@@ -36,9 +39,9 @@ def Opcion1():
                 ListaDeEnlacesYListaDeEnlacesGenerada=BusquedaDeVideo(TextoParaBusqueda,CantidadDeResultados)
                 ListaDeEnlaces,ListaDeEnlacesGenerada=ListaDeEnlacesYListaDeEnlacesGenerada
             else:
-                print("\n\n!!!!!!!Valor ingresado inválido por favor ingrese una cantidad de resultados entero entre 1 y 5")
+                print("\n!!!!!!!Valor ingresado inválido por favor ingrese una cantidad de resultados entero entre 1 y 5\n")
         except:
-            print("\n\n!!!!!!!Valor ingresado inválido por favor ingrese una cantidad de resultados entero entre 1 y 5")
+            print("\n!!!!!!!Valor ingresado inválido por favor ingrese una cantidad de resultados entero entre 1 y 5\n")
     if ListaDeEnlacesGenerada:
         #Almacenamiento de enlaces de videos
         #Ingreso de numeros de enlaces a almacenar, validación del valor ingresado, eliminación de duplicados y resolicitud hasta ingresar dato correcto
@@ -52,13 +55,13 @@ def Opcion1():
                 for i in range(0,len(ListaNumEnlaces)):
                     iValor=int(ListaNumEnlaces[i])
                     if iValor>len(ListaDeEnlaces) or iValor<=0:
-                        print("!!!!!El número ", ListaNumEnlaces[i]," no es inválido")
+                        print("\n!!!!!El número ", ListaNumEnlaces[i]," no es inválido\n")
                         ValorNumEnlacesValido=False
                 for i in ListaNumEnlaces:
                     if i not in ListaNumEnlacesSinRepetidos:
                         ListaNumEnlacesSinRepetidos.append(i)
             except:
-                print("!!!!!!Valores o formato de datos ingresados no válido")
+                print("\n!!!!!!Valores o formato de datos ingresados no válido\n")
                 ValorNumEnlacesValido=False
         for i in ListaNumEnlacesSinRepetidos:
             print("Enlace de video # ", i," - ", ListaDeEnlaces[int(i)-1] ," - fue almacenado!")
