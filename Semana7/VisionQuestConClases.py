@@ -1,7 +1,13 @@
 #Importación 
-import webbrowser
-from Opcion1 import Opcion1
+from ClaseVisionQuest import VisionQuest
+#from Opcion1 import Opcion1
 from Opcion2 import Opcion2
+
+TextoParaBusqueda=""
+CantidadDeResultados=0
+Enlace=""
+NumEnlacesParaAlmacenar=""
+VisionQuest1=VisionQuest(TextoParaBusqueda,CantidadDeResultados,Enlace,NumEnlacesParaAlmacenar)
 
 #Código
 Activo=True
@@ -25,8 +31,25 @@ while Activo==True:
 
     #Opción 1
     if Opcion==1 and ValorOpcionValido==True:
-        ListaYNumerosDeEnlacesSeleccionados=Opcion1()
-        ListaDeEnlaces,ListaNumEnlacesSinRepetidos,EnlacesGuardados=ListaYNumerosDeEnlacesSeleccionados
+       
+        TextoParaBusqueda=input("Por favor ingrese el texto para realizar la búsqueda: ")
+        EstadoBusqueda="Valor Invalido"
+        while EstadoBusqueda=="Valor Invalido":
+            CantidadDeResultados=input("Ingrese la cantidad de resultados que desea obtener (max.5): ")
+            ListaDeEnlaces,ListaDeEnlacesGenerada,EstadoBusqueda=VisionQuest1.Busqueda(TextoParaBusqueda,CantidadDeResultados)
+        if ListaDeEnlacesGenerada:
+            for i in ListaDeEnlaces:
+             VideoAbierto= VisionQuest1.AbrirVideos(i)
+             if VideoAbierto==False:
+                 break
+        if ListaDeEnlaces and VideoAbierto:
+            EstadoDeGuardarEnlace="Valor Invalido"
+            while EstadoDeGuardarEnlace=="Valor Invalido":
+                NumEnalcesParaAlmacenar=input("Ingrese el número de los enlaces a almacenar, separados por coma (ej. 2,3,n): ")
+                EnlacesGuardados,ListaNumEnlacesSinRepetidos,EstadoDeGuardarEnlace=VisionQuest1.GuardarEnlaces(NumEnalcesParaAlmacenar)
+                print(EnlacesGuardados)
+                print(ListaNumEnlacesSinRepetidos)
+                print(EstadoDeGuardarEnlace)  
     #Opcion 2
     if Opcion==2 and ValorOpcionValido==True:
         if EnlacesGuardados==True:
